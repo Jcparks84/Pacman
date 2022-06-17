@@ -1,6 +1,6 @@
 const canvas = document.querySelector('canvas')
-
 const c = canvas.getContext('2d')
+const scoreEL = document.querySelector('#scoreEL')
 
 canvas.width = innerWidth
 canvas.height = innerHeight
@@ -84,6 +84,7 @@ const keys = {
 }
 
 let lastKey = ''
+let score = 0
 
 const map = [
     ['1', '-', '-', '-', '-', '-', '-', '-', '-', '-', '2'],
@@ -397,6 +398,7 @@ function animate() {
             }
           }
     }
+    // touch pellets here
     for (let i = pellets.length -1; 0 < i; i--) {
         const pellet = pellets[i]
         pellet.draw()
@@ -409,6 +411,8 @@ function animate() {
             ) {
             console.log('touching');
             pellets.splice(i, 1)
+            score += 10
+            scoreEL.innerHTML = score
 
         }
     }
